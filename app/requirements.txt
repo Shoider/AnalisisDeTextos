@@ -1,0 +1,10 @@
+python-multipart
+chardet
+pypdf
+python-docx
+fastapi
+uvicorn
+gunicorn
+httpx
+qdrant-client
+pydantic

@@ -1,0 +1,17 @@
+FROM python:3.11-slim
+
+# Establece el directorio de trabajo dentro del contenedor
+WORKDIR /app
+
+# Copia los archivos del proyecto al contenedor
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+# Expone el puerto si tu app lo requiere (ajústalo si es necesario)
+EXPOSE 5025
+
+# Comando para iniciar la app
+# Comando para producción con Gunicorn y Uvicorn
+CMD ["gunicorn", "main:app", "--bind", "0.0.0.0:5025", "--worker-class", "uvicorn.workers.UvicornWorker", "--workers", "2"]
